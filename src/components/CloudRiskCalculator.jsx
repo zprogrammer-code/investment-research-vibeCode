@@ -1,4 +1,6 @@
 import { useMemo, useState } from 'react';
+import MetricCell from './MetricCell.jsx';
+import SectionHeader from './SectionHeader.jsx';
 
 const PROVIDERS = [
   {
@@ -115,26 +117,10 @@ function ProviderCard({ provider, metrics, isHighestRisk }) {
       </header>
 
       <dl className="mt-4 grid grid-cols-2 gap-3 text-sm">
-        <div className="rounded-lg border border-slate-800/80 bg-slate-950/50 px-3 py-2.5">
-          <dt className="text-[10px] font-medium uppercase tracking-wider text-slate-500">Run-rate</dt>
-          <dd className={`mt-0.5 font-mono font-semibold tabular-nums ${provider.metricAccent}`}>
-            ${provider.revenueRunRate}B
-          </dd>
-        </div>
-        <div className="rounded-lg border border-slate-800/80 bg-slate-950/50 px-3 py-2.5">
-          <dt className="text-[10px] font-medium uppercase tracking-wider text-slate-500">RPO</dt>
-          <dd className={`mt-0.5 font-mono font-semibold tabular-nums ${provider.metricAccent}`}>
-            ${provider.rpo}B
-          </dd>
-        </div>
-        <div className="rounded-lg border border-slate-800/80 bg-slate-950/50 px-3 py-2.5">
-          <dt className="text-[10px] font-medium uppercase tracking-wider text-slate-500">Custom silicon</dt>
-          <dd className="mt-0.5 font-mono font-semibold tabular-nums text-white">{provider.customSilicon}%</dd>
-        </div>
-        <div className="rounded-lg border border-slate-800/80 bg-slate-950/50 px-3 py-2.5">
-          <dt className="text-[10px] font-medium uppercase tracking-wider text-slate-500">Owned infra</dt>
-          <dd className="mt-0.5 font-mono font-semibold tabular-nums text-white">{provider.ownedInfra}%</dd>
-        </div>
+        <MetricCell label="Run-rate" value={`$${provider.revenueRunRate}B`} valueClassName={provider.metricAccent} />
+        <MetricCell label="RPO" value={`$${provider.rpo}B`} valueClassName={provider.metricAccent} />
+        <MetricCell label="Custom silicon" value={`${provider.customSilicon}%`} />
+        <MetricCell label="Owned infra" value={`${provider.ownedInfra}%`} />
       </dl>
 
       <div className="mt-5 grid gap-3">
@@ -221,20 +207,12 @@ export default function CloudRiskCalculator() {
       className="mt-12 rounded-2xl border border-slate-800 bg-slate-900/40 p-5 shadow-xl shadow-slate-950/50 sm:p-8"
       aria-labelledby="cloud-risk-calculator-heading"
     >
-      <header className="max-w-3xl">
-        <p className="text-xs font-medium uppercase tracking-widest text-emerald-400">Scenario lab</p>
-        <h2
-          id="cloud-risk-calculator-heading"
-          className="mt-1 text-xl font-semibold tracking-tight text-white sm:text-2xl"
-        >
-          Big Three cloud risk calculator
-        </h2>
-        <p className="mt-2 text-sm leading-relaxed text-slate-400">
-          Model backlog runway and dynamic risk for GCP, Azure, and AWS using Q1 2026 baseline inputs. Adjust supply
-          and rent stressors to see disproportionate impact on providers with lower custom silicon share or higher
-          leased infrastructure exposure.
-        </p>
-      </header>
+      <SectionHeader
+        id="cloud-risk-calculator-heading"
+        subtitle="Scenario lab"
+        title="Big Three cloud risk calculator"
+        description="Model backlog runway and dynamic risk for GCP, Azure, and AWS using Q1 2026 baseline inputs. Adjust supply and rent stressors to see disproportionate impact on providers with lower custom silicon share or higher leased infrastructure exposure."
+      />
 
       <div className="mt-8 grid gap-4 lg:grid-cols-2">
         <SliderControl

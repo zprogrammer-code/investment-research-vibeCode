@@ -1,3 +1,5 @@
+import SectionHeader from './SectionHeader.jsx';
+
 const LAYERS = [
   {
     level: 5,
@@ -133,19 +135,13 @@ export default function TechnologyPyramidModel() {
       className="mt-12 w-full rounded-2xl border border-slate-800 bg-slate-900/40 p-4 shadow-xl shadow-slate-950/50 sm:p-6 lg:p-8"
       aria-labelledby="tech-pyramid-heading"
     >
-      <header className="max-w-4xl">
-        <p className="text-xs font-medium uppercase tracking-widest text-emerald-400">Value stack model</p>
-        <h2
-          id="tech-pyramid-heading"
-          className="mt-1 text-xl font-semibold tracking-tight text-white sm:text-2xl"
-        >
-          Structural Technology Value Stack (1950–Present)
-        </h2>
-        <p className="mt-2 text-sm leading-relaxed text-slate-400">
-          Five structural layers from manufacturing foundations to sovereign automation — with hardware bottlenecks
-          and structural risk increasing toward the base.
-        </p>
-      </header>
+      <SectionHeader
+        id="tech-pyramid-heading"
+        subtitle="Value stack model"
+        title="Structural Technology Value Stack (1950–Present)"
+        description="Five structural layers from manufacturing foundations to sovereign automation — with hardware bottlenecks and structural risk increasing toward the base."
+        className="max-w-4xl"
+      />
 
       {/* Desktop / tablet: synced grid layout */}
       <div className="mt-8 hidden lg:grid lg:grid-cols-[4.5rem_minmax(0,1fr)_minmax(0,1.15fr)_minmax(0,1fr)] lg:grid-rows-[auto_repeat(5,minmax(5.5rem,1fr))] lg:gap-x-4">
