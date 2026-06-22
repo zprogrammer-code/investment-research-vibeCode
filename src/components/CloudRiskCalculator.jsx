@@ -47,6 +47,7 @@ function formatRunwayYears(rpo, revenueRunRate) {
 }
 
 function formatRiskScore(score) {
+  if (!Number.isFinite(score)) return '—';
   return score.toFixed(2);
 }
 
@@ -77,7 +78,10 @@ function SliderControl({ id, label, hint, min, max, step, value, displayValue, o
         max={max}
         step={step}
         value={value}
-        onChange={(e) => onChange(Number(e.target.value))}
+        onChange={(e) => {
+          const parsed = Number(e.target.value);
+          if (Number.isFinite(parsed)) onChange(parsed);
+        }}
         className="mt-4 h-2 w-full cursor-pointer appearance-none rounded-full bg-slate-800 accent-emerald-500"
         aria-valuemin={min}
         aria-valuemax={max}
@@ -211,6 +215,7 @@ export default function CloudRiskCalculator() {
   }, [nvidiaMultiplier, rentInflationPercent]);
 
   const highestRiskId = useMemo(() => {
+    if (providerMetrics.length === 0) return null;
     return providerMetrics.reduce((max, current) =>
       current.dynamicRisk > max.dynamicRisk ? current : max
     ).id;
@@ -271,6 +276,10 @@ export default function CloudRiskCalculator() {
       <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-3">
         {PROVIDERS.map((provider) => {
           const metrics = providerMetrics.find((m) => m.id === provider.id);
+          if (!metrics) {
+            console.error(`Missing metrics for provider: ${provider.id}`);
+            return null;
+          }
           return (
             <ProviderCard
               key={provider.id}
