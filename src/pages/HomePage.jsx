@@ -52,17 +52,18 @@ export default function HomePage() {
       <main className="mx-auto max-w-6xl px-4 py-10">
         <section className="grid gap-6 md:grid-cols-3">
           {[
-            { title: 'Watchlist', body: 'Track tickers and key notes in one view.' },
-            { title: 'Documents', body: 'Link 10-Ks, transcripts, and your highlights.' },
-            { title: 'Scenarios', body: 'Model cases and assumptions over time.' },
+            { title: 'Watchlist', body: 'Track tickers and key notes in one view.', to: '/watchlist' },
+            { title: 'Documents', body: 'Link 10-Ks, transcripts, and your highlights.', to: '/documents' },
+            { title: 'Scenarios', body: 'Model cases and assumptions over time.', to: '/scenarios' },
           ].map((card) => (
-            <article
+            <Link
               key={card.title}
-              className="rounded-2xl border border-slate-800 bg-slate-900/60 p-5 shadow-lg shadow-slate-950/40"
+              to={card.to}
+              className="group rounded-2xl border border-slate-800 bg-slate-900/60 p-5 shadow-lg shadow-slate-950/40 transition hover:border-emerald-500/40 hover:bg-slate-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400"
             >
-              <h2 className="text-lg font-semibold text-white">{card.title}</h2>
+              <h2 className="text-lg font-semibold text-white group-hover:text-emerald-200">{card.title}</h2>
               <p className="mt-2 text-sm text-slate-400">{card.body}</p>
-            </article>
+            </Link>
           ))}
         </section>
 
