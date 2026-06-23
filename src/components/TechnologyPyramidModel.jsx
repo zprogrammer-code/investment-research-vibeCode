@@ -55,7 +55,7 @@ const LAYERS = [
     labelDetail: 'Leading-edge fabs, EUV tools, and process equipment.',
     bottleneck: 'EUV Lithography Exposure',
     bottleneckDetail:
-      'ASML’s EUV monopoly and sub-5 nm fab concentration in Taiwan create a single-point failure surface for the entire stack above.',
+      "ASML's EUV monopoly and sub-5 nm fab concentration in Taiwan create a single-point failure surface for the entire stack above.",
     accent: 'border-amber-500/40 bg-amber-950/25',
     textAccent: 'text-amber-300',
   },
